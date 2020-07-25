@@ -30,6 +30,8 @@ type result struct {
 
 // ExistsDomain PromptAPI ExistsDomain implementation.
 func (p PromptAPIWhois) ExistsDomain(domain string) (exists bool, err error) {
+	domain = cutHostname(domain)
+
 	if p.APIKey == "" {
 		err = errors.New("promptapiwhois: Api key not found")
 		return
