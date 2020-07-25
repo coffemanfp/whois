@@ -67,8 +67,9 @@ func (p PromptAPIWhois) ExistsDomain(domain string) (exists bool, err error) {
 
 	switch data.Result {
 	case PromptAPIResultAvailable:
-	case PromptAPIResultError:
 		exists = false
+	case PromptAPIResultError:
+		err = errors.New(PromptAPIMessageInvalidDomain)
 	case PromptAPIResultRegistered:
 		exists = true
 	}
